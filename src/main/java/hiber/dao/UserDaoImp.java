@@ -12,17 +12,16 @@ import java.util.List;
 public class UserDaoImp implements UserDao {
 
    @Autowired
-   private SessionFactory sessionFactory;
+   private SessionFactory SessionFactory;
 
    @Override
-   public void add(User user) {
-      sessionFactory.getCurrentSession().save(user);
+   public void add(User user) {SessionFactory.getCurrentSession().save(user);
    }
 
    @Override
    @SuppressWarnings("unchecked")
    public List<User> listUsers() {
-      TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User");
+      TypedQuery<User> query = SessionFactory.getCurrentSession().createQuery("FROM  User");
       return query.getResultList();
    }
 
