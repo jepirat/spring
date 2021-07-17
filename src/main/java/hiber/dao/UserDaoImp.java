@@ -34,7 +34,6 @@ public class UserDaoImp implements UserDao {
 
    @Override
    public User getUserByModelAndSeries(String brand, int series) {
-      String s = "";
       User user = null;
 
       try {
