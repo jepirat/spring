@@ -7,8 +7,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -33,13 +31,13 @@ public class UserDaoImp implements UserDao {
       TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("FROM  User");
       return query.getResultList();
    }
-   @Transactional
+
    @Override
    public User getUserByModelAndSeries(String brand, int series) {
       User user = null;
-      Session session = sessionFactory.getCurrentSession();
-      try {
 
+      try {
+         Session session = sessionFactory.getCurrentSession();
          String HQL = "SELECT user FROM User user WHERE user.car.brand = :brand and user.car.series = :series";
          user = session.createQuery(HQL, User.class)
                  .setParameter("brand", brand)
