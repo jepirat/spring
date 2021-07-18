@@ -35,7 +35,7 @@ public class MainApp {
 
 
 
-     System.out.println(userDaoImp.getUserByModelAndSeries("Toyota", 24324));
+     System.out.println(userService.getUserByModelAndSeries("Toyota", 24324));
   }
 
 }
