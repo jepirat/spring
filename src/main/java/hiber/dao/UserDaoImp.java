@@ -13,10 +13,6 @@ import java.util.List;
 
 @Repository
 public class UserDaoImp implements UserDao {
-
-   @Autowired
-   private HibernateTransactionManager hibernateTransactionManager;
-
    @Autowired
    private SessionFactory sessionFactory;
 

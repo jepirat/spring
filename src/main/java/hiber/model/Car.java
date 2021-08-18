@@ -48,4 +48,14 @@ public class Car {
     public void setOwner(User owner) {
         this.owner = owner;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "Id=" + Id +
+                ", series=" + series +
+                ", brand='" + brand + '\'' +
+                ", owner=" + owner.getFirstName() +
+                '}';
+    }
 }
