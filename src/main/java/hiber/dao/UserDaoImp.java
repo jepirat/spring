@@ -30,24 +30,9 @@ public class UserDaoImp implements UserDao {
 
    @Override
    public User getUserByModelAndSeries(String brand, int series) {
-      User user = null;
-
-      try {
-         Session session = sessionFactory.getCurrentSession();
-         String HQL = "SELECT user FROM User user WHERE user.car.brand = :brand and user.car.series = :series";
-         user = session.createQuery(HQL, User.class)
-                 .setParameter("brand", brand)
-                 .setParameter("series", series)
-                 .uniqueResult();
-         if (user == null) {
-            System.out.println("User don't exist");
-         }
-      } catch (NonUniqueResultException e) {
-         System.err.println("It is impossible to get user data, as there are several users with a machine of this model and series.");
-      } catch (HibernateException e) {
-         System.err.println("Error in getting the user by the series and model of the machine.");
-         e.printStackTrace();
-      }
-      return user;
+      TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("SELECT user FROM User user WHERE user.car.brand = :brand and user.car.series = :series");
+      query.setParameter("brand", brand);
+      query.setParameter("series", series);
+      return query.getSingleResult();
    }
 }
